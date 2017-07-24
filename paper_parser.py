@@ -60,6 +60,8 @@ def save_docx(parser: BaseParser, target: str) -> None:
 
                 p_para.runs[0].font.size = Pt(9)
 
+        document.add_page_break()
+
     document.save(os.path.join(target, '{}.docx'.format(parser.title)))
 
 
