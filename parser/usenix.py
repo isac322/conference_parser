@@ -33,7 +33,12 @@ class UsenixParser(BaseParser):
                 title = paper.find('h2').a.text
 
                 abs_list = paper.find('div', attrs={'class': 'field-name-field-paper-description-long'})
-                abstractions = tuple(d.text for d in abs_list.find_all('p'))
+                p_list = abs_list.find_all('p')
+
+                if not p_list:
+                    abstractions = (abs_list.text,)
+                else:
+                    abstractions = tuple(d.text for d in abs_list.find_all('p'))
 
                 papers.append(Paper(title, abstractions))
 
